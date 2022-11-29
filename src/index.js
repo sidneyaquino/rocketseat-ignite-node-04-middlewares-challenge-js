@@ -9,7 +9,7 @@ app.use(cors());
 
 const users = [];
 
-const _FREE_TODOS_ = 10; 
+const freeToDos = 10; 
 
 function checksExistsUserAccount(request, response, next) {
   const {username} = request.headers;
@@ -24,7 +24,7 @@ function checksExistsUserAccount(request, response, next) {
 
 function checksCreateTodosUserAvailability(request, response, next) {
   const {user} = request;
-  if (!user.pro && user.todos.length >= _FREE_TODOS_){
+  if (!user.pro && user.todos.length >= freeToDos){
     return response.status(403).json({error: 'your free limit is over!'});
   }
   return next();
